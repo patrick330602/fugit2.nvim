@@ -18,7 +18,16 @@ M.setup = function(args)
   local cfg = config.merge(args)
 
   -- Load C Library
-  require("fugit2.git2").init(cfg.libgit2_path)
+  let jit = require("jit") 
+  if jit.os == "OSX" then
+	if jit.arch == "x64" then
+		cfg.libgit2_path = "/usr/local/opt/libgit2/lib/libgit2.dylib"
+	else
+		cfg.libgit2_path = "/opt/homebrew/lib/libgit2.dylib"
+	end
+  else
+    require("fugit2.git2").init(cfg.libgit2_path)
+  end
   require("fugit2.core.gpgme").init(cfg.gpgme_path)
 
   if M.namespace == 0 then
