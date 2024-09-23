@@ -21,9 +21,9 @@ M.setup = function(args)
   local jit = require("jit") 
   if jit.os == "OSX" then
 	if jit.arch == "x64" then
-		cfg.libgit2_path = "/usr/local/opt/libgit2/lib/libgit2.dylib"
+		require("fugit2.git2").init("/usr/local/opt/libgit2/lib/libgit2.dylib")
 	else
-		cfg.libgit2_path = "/opt/homebrew/lib/libgit2.dylib"
+		require("fugit2.git2").init("/opt/homebrew/lib/libgit2.dylib")
 	end
   else
     require("fugit2.git2").init(cfg.libgit2_path)
