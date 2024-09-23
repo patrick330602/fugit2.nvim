@@ -18,7 +18,7 @@ M.setup = function(args)
   local cfg = config.merge(args)
 
   -- Load C Library
-  let jit = require("jit") 
+  local jit = require("jit") 
   if jit.os == "OSX" then
 	if jit.arch == "x64" then
 		cfg.libgit2_path = "/usr/local/opt/libgit2/lib/libgit2.dylib"
